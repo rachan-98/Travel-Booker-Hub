@@ -86,27 +86,191 @@ npm run dev
 
 ---
 
-## API Endpoints
+## API Documentation
 
-### Auth
+### Base URL
 
-* POST `/api/auth/register`
-* POST `/api/auth/login`
+http://localhost:5000/api
+
+---
+
+### Authentication
+
+#### Register User
+
+POST `/auth/register`
+
+Request Body:
+
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "123456"
+}
+```
+
+Response:
+
+```json
+{
+  "message": "User registered successfully"
+}
+```
+
+---
+
+#### Login User
+
+POST `/auth/login`
+
+Request Body:
+
+```json
+{
+  "email": "john@example.com",
+  "password": "123456"
+}
+```
+
+Response:
+
+```json
+{
+  "token": "JWT_TOKEN"
+}
+```
+
+---
 
 ### Bookings
 
-* GET `/api/bookings` → Get all bookings
-* POST `/api/bookings` → Create booking
-* GET `/api/bookings/:id` → Get single booking
-* DELETE `/api/bookings/:id` → Cancel booking
+#### Get All Bookings
+
+GET `/bookings`
+
+Headers:
+Authorization: Bearer TOKEN
+
+Response:
+
+```json
+[
+  {
+    "_id": "booking_id",
+    "destination": "Paris",
+    "date": "2026-05-01"
+  }
+]
+```
+
+---
+
+#### Create Booking
+
+POST `/bookings`
+
+Headers:
+Authorization: Bearer TOKEN
+
+Request Body:
+
+```json
+{
+  "destination": "Paris",
+  "date": "2026-05-01"
+}
+```
+
+Response:
+
+```json
+{
+  "message": "Booking created successfully"
+}
+```
+
+---
+
+#### Get Booking by ID
+
+GET `/bookings/:id`
+
+Headers:
+Authorization: Bearer TOKEN
+
+---
+
+#### Cancel Booking
+
+DELETE `/bookings/:id`
+
+Headers:
+Authorization: Bearer TOKEN
+
+Response:
+
+```json
+{
+  "message": "Booking cancelled successfully"
+}
+```
+
+---
 
 ### Tasks
 
-* POST `/api/tasks`
-* GET `/api/tasks`
-* GET `/api/tasks/:id`
-* PUT `/api/tasks/:id`
-* DELETE `/api/tasks/:id`
+#### Create Task
+
+POST `/tasks`
+
+Headers:
+Authorization: Bearer TOKEN
+
+Request Body:
+
+```json
+{
+  "title": "Confirm booking",
+  "status": "pending"
+}
+```
+
+---
+
+#### Get All Tasks
+
+GET `/tasks`
+
+Headers:
+Authorization: Bearer TOKEN
+
+---
+
+#### Get Task by ID
+
+GET `/tasks/:id`
+
+Headers:
+Authorization: Bearer TOKEN
+
+---
+
+#### Update Task
+
+PUT `/tasks/:id`
+
+Headers:
+Authorization: Bearer TOKEN
+
+---
+
+#### Delete Task
+
+DELETE `/tasks/:id`
+
+Headers:
+Authorization: Bearer TOKEN
 
 ---
 
@@ -140,5 +304,3 @@ Add screenshots of your UI or Postman responses here
 This project reflects my ability to design and build a backend system that focuses on performance, security, and clean architecture while solving a practical problem.
 
 ---
-
-## If you like this project, consider giving it a star
